@@ -64,37 +64,55 @@ public class Person {
         this.phone = phone;
     }
 
-    public int getBegin(){
-        return accNum;
+    public double getBegin(){
+        return beginBalance;
     }
 
-    public void setBegin(int numb){
-        accNum = numb;
+    public void setBegin(double beginning){
+        beginBalance = beginning;
     }
 
-    public int getTrades(){
-        return accNum;
+    public List<Trades> getTrades(){
+        return trades;
+    }
+
+    public void setTrades(List<Trades> trades){
+        this.trades = trades;
     }
 
 
-    public void addTrade(int numb){
-        accNum = numb;
+    public void addTrade(Trades trade){
+        this.trades.add(trade);
     }
 
-    public int delTrade(){
-        return accNum;
+    public void delTrade(Trades trade){
+        this.trades.remove(trade);
     }
 
-    public void getCash(int numb){
-        accNum = numb;
+    public double getCash(){
+        calculate();
+        return totalCash;
     }
-
-    public void getStocks(){
-
+    public double getStocks(){
+        calculate();
+        return totalStock;
     }
 
     public void calculate(){
+        this.totalCash = this.beginBalance;
 
+        this.totalStock = 0;
+
+        for(Trades trade : this.trades){
+            if(trade.getBuySell().equals("Sell")){
+                totalCash += trade.getTotal();
+                totalStock -= trade.getTotal();
+
+            }else if(trade.getBuySell().equals("Buy")){
+                totalCash -= trade.getTotal();
+                totalStock += trade.getTotal();
+            }
+        }
     }
 
 }

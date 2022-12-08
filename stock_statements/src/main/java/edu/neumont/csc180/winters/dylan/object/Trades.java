@@ -3,7 +3,7 @@ package edu.neumont.csc180.winters.dylan.object;
 public class Trades {
     private String buySell;
     private String symbol;
-    private int shares;
+    private long shares;
     private double sharePrice;
     private double total;
 
@@ -25,11 +25,11 @@ public class Trades {
         this.symbol = symbol;
     }
     
-    public int getShares(){
+    public long getShares(){
         return shares;
     }
 
-    public void setShares(int shares){
+    public void setShares(long shares){
         this.shares = shares;
     }
 

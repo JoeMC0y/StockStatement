@@ -1,10 +1,10 @@
 package edu.neumont.csc180.winters.dylan.object;
 
-import java.nio.channels.IllegalSelectorException;
+
 import java.util.List;
 
 public class Person {
-    private int accNum;
+    private long accNum;
     private String ssn;
     private String fName;
     private String lName;
@@ -16,11 +16,11 @@ public class Person {
     private double totalStock;
 
 
-    public int getAccNum(){
+    public long getAccNum(){
         return accNum;
     }
 
-    public void setAccNum(int numb){
+    public void setAccNum(long numb){
         accNum = numb;
     }
 

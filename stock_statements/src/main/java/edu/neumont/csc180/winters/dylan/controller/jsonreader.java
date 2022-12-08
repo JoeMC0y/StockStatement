@@ -13,7 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 import edu.neumont.csc180.winters.dylan.object.Person;
 import edu.neumont.csc180.winters.dylan.object.Trades;
-import edu.neumont.csc180.winters.dylan.object.person;
+
 
 public class jsonreader{
 
@@ -31,13 +31,13 @@ public class jsonreader{
 
     private static Person makePerson(JSONObject p) {
         Person person = new Person();
-        person.setAccNum((int) p.get("account_number"));
+        person.setAccNum((long) p.get("account_number"));
         person.setSsn((String) p.get("ssn"));
         person.setFName((String) p.get("first_name"));
         person.setLName((String) p.get("last_name"));
         person.setEmail((String) p.get("email"));
         person.setPhone((String) p.get("phone"));
-        person.setBegin((double) p.get("beginning_balance"));
+        person.setBegin(Double.parseDouble(((String)p.get("beginning_balance")).replaceAll("^\\$", "")));
         person.setTrades(getTrades((JSONArray) p.get("stock_trades")));
         return person;
     }
@@ -49,8 +49,8 @@ public class jsonreader{
             JSONObject trade = (JSONObject) t;
             Trades tradee = new Trades();
             tradee.setBuySell((String) trade.get("type"));
-            tradee.setSharePrice((double) trade.get("price_per_share"));
-            tradee.setShares((int) trade.get("count_shares"));
+            tradee.setSharePrice(Double.parseDouble(((String)trade.get("price_per_share")).replaceAll("^\\$", "")));
+            tradee.setShares((long) trade.get("count_shares"));
             tradee.setSymbol((String) trade.get("stock_symbol"));
 
             trades.add(tradee);

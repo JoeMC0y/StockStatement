@@ -1,17 +1,11 @@
 package edu.neumont.csc180.winters.dylan;
 
-/**
- * Hello world!
- */
-public final class App {
-    private App() {
-    }
+import edu.neumont.csc180.winters.dylan.controller.jsonreader;
 
-    /**
-     * Says hello to the world.
-     * @param args The arguments of the program.
-     */
+public final class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        String jsonData = "stock_statements/src/main/java/edu/neumont/csc180/winters/dylan/data/thestocks.json";
+
+        jsonreader.readJSON(jsonData);
     }
 }

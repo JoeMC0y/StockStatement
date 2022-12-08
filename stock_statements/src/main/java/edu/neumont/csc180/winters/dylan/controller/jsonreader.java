@@ -60,7 +60,7 @@ public class jsonreader{
 
     }
 
-    public static List<Person> getPeopleFromData() {
+    public static List<Person> getPeople() {
         List<Person> people = new ArrayList<>();
 
         for (Object o : data){

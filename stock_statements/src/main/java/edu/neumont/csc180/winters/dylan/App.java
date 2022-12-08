@@ -7,5 +7,6 @@ public final class App {
         String jsonData = "stock_statements/src/main/java/edu/neumont/csc180/winters/dylan/data/thestocks.json";
 
         jsonreader.readJSON(jsonData);
+        System.out.println(jsonreader.getPeople());
     }
 }

@@ -44,10 +44,11 @@ public class Trades {
 
     
     public double getTotal(){
+        setTotal();
         return total;
     }
 
-    public void setTotal(double total){
-        this.total = total;
+    public void setTotal(){
+        this.total = shares * sharePrice;
     }
 }

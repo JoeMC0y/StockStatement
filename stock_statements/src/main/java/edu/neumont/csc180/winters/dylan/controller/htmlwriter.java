@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
 import edu.neumont.csc180.winters.dylan.object.Person;
@@ -14,11 +15,13 @@ import edu.neumont.csc180.winters.dylan.object.Trades;
 public class htmlwriter {
     private static DateFormat format = new SimpleDateFormat("MM/d/yyyy HH:mm");
     private static Date dateTime = new Date();
+    private static NumberFormat money = NumberFormat.getCurrencyInstance();
 
     public static void writeHTML(List<Person> people){
         for (Person person : people){
             StringBuilder s = new StringBuilder();
             s.append("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title></head>");
+            s.append("<style> table, tr, td { border:1px solid black;}</style>");
             s.append("<body>");
             s.append(String.format("<p>date created: %s</p>", format.format(dateTime)));
             s.append(String.format(" <h1>%s %s Acc#:%s</h1>", person.getFName(), person.getLName(), person.getAccNum()));
@@ -32,13 +35,13 @@ public class htmlwriter {
                 s.append(String.format("<td> %s </td>", trade.getBuySell()));
                 s.append(String.format("<td> %s </td>", trade.getSymbol()));
                 s.append(String.format("<td> %s </td>", trade.getShares()));
-                s.append(String.format("<td> $ %s </td>", trade.getSharePrice()));
-                s.append(String.format("<td> $ %s </td>", trade.getTotal()));
+                s.append(String.format("<td> %s </td>", money.format(trade.getSharePrice())));
+                s.append(String.format("<td> %s </td>", money.format(trade.getTotal())));
                 s.append("</tr>");
             }
 
-            s.append(String.format("<h3> Balance: $ %s</h3>", person.getCash()));
-            s.append(String.format("<h3> Shares Value: $ %s</h3>", person.getStocks()));
+            s.append(String.format("<h3> Balance: %s</h3>", money.format(person.getCash())));
+            s.append(String.format("<h3> Shares Value: %s</h3>", money.format(person.getStocks())));
             s.append("</body></html>");
 
             
